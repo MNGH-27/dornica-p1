@@ -99,7 +99,7 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-8  sm:px-20 md:px-32 w-full mb-auto">
+      <div className="flex flex-col items-center justify-center gap-8 pb-10 sm:px-20 md:px-32 w-full mb-auto">
         <DornicaInput
           error={error.name}
           target={"name"}

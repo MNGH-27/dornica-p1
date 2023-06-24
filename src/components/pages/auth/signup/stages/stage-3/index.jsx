@@ -162,8 +162,8 @@ export default function SignupStage3({ onSetStageHandler }) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-8 px-32 py-16 w-full mb-auto">
-        <div className="grid grid-cols-2 w-full gap-5">
+      <div className="flex flex-col items-center justify-center gap-8 sm:px-16 xl:px-32 py-16 w-full mb-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5">
           <DornicaDropBox
             value={dataSchema.state}
             target={"state"}
@@ -196,7 +196,7 @@ export default function SignupStage3({ onSetStageHandler }) {
           title={"آدرس"}
         />
 
-        <div className="grid grid-cols-2 w-full gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-5">
           <DornicaInput
             value={dataSchema.lng}
             target={"lng"}

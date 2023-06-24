@@ -47,7 +47,10 @@ export default function Signup() {
               onSetStageHandler={onSetStageHandler}
             />
           ) : signupStage === 2 ? (
-            <SignupStage2 onSetStageHandler={onSetStageHandler} />
+            <SignupStage2
+              parentData={dataSchema}
+              onSetStageHandler={onSetStageHandler}
+            />
           ) : (
             <SignupStage3 onSetStageHandler={onSetStageHandler} />
           )

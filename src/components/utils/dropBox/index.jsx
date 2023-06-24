@@ -15,7 +15,7 @@ export default function DornicaDropBox({
       <div
         className={`${containerClass} ${
           error ? "border-red-700" : ""
-        } w-full flex items-center justify-start gap-5 p-5 border border-[#D6D6D6] rounded-[50px] relative`}
+        } w-full flex items-center justify-start gap-5  p-3 sm:p-5 border border-[#D6D6D6] rounded-[50px] relative`}
       >
         <span className="absolute bg-white -top-3 right-6 px-2 font-medium">
           {title}

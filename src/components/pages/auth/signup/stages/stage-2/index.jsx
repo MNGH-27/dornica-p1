@@ -9,8 +9,7 @@ import DornicaButton from "../../../../../utils/button";
 import MobileVerification from "../../mobileVerification";
 import { toast } from "react-toastify";
 
-export default function SignupStage2({ onSetStageHandler }) {
-  const [phoneIsVerified, setPhoneIsVerified] = useState(false);
+export default function SignupStage2({ parentData, onSetStageHandler }) {
   const [dataSchema, setDataScheam] = useState({
     phoneNumber: "",
     email: "",
@@ -21,31 +20,14 @@ export default function SignupStage2({ onSetStageHandler }) {
     email: "",
   });
 
+  //set parentData if we have to dataSchema
   useEffect(() => {
-    /**
-     * * data is stored in sessionStorage and will added to dataSchema(state)
-     * * in component mount
-     */
-
-    //loop on sessionStorage to get saved data and show in component
-    Object.keys(sessionStorage).forEach(function (key) {
-      setDataScheam((prevState) => {
-        return {
-          ...prevState,
-          [key]: JSON.parse(sessionStorage.getItem(key)),
-        };
+    if (parentData.email && parentData.phoneNumber) {
+      setDataScheam({
+        ...parentData,
       });
-    });
-  }, []);
-
-  //this function will be called after user enter verify code successfully
-  const phoneVerifyStatus = (phoneNumber) => {
-    //set phone number as verified
-    setPhoneIsVerified(true);
-
-    //set phone number in dataScheama
-    onSetDataScheamaHandler("phoneNumber", phoneNumber);
-  };
+    }
+  }, [parentData]);
 
   const onSetDataScheamaHandler = (target, value) => {
     setDataScheam((prevState) => ({
@@ -65,6 +47,9 @@ export default function SignupStage2({ onSetStageHandler }) {
   };
 
   const checkInput = () => {
+    //clear error
+    setError({});
+
     let errorFlag = false;
 
     //check if we have phone number
@@ -75,11 +60,6 @@ export default function SignupStage2({ onSetStageHandler }) {
         ...prevState,
         phoneNumber: "شماره تلفن خود را وارد کنید",
       }));
-    } //check if phone is verified
-    else if (!phoneIsVerified) {
-      errorFlag = true;
-
-      toast.error("شماره وارد شده تایید شده نیست لطفا ارسال کد را بزنید");
     }
 
     if (dataSchema.email.length === 0) {
@@ -94,14 +74,16 @@ export default function SignupStage2({ onSetStageHandler }) {
     return errorFlag;
   };
 
+  console.log("error :", error);
+
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-8 px-32 py-16 w-full mb-auto">
+      <div className="flex flex-col items-center justify-center gap-8 sm:px-20 md:px-32 w-full mb-auto">
         {/* verify mobile number */}
         <MobileVerification
           prevPhoneNumber={dataSchema.phoneNumber}
           phoneError={error.phoneNumber}
-          phoneVerifyStatus={phoneVerifyStatus}
+          onSetPhoneNumber={onSetDataScheamaHandler}
         />
 
         <DornicaInput

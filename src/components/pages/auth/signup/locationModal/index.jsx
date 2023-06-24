@@ -41,22 +41,22 @@ export default function LocationModal({
       modalContainer={"relative"}
       closeModalHandler={closeModalHandler}
     >
-      <div className="relative z-10 w-[850px] h-[500px] overflow-hidden ">
+      <div className="relative z-10 overflow-hidden w-[250px] h-[200px] sm:w-[420px] sm:h-[280px] md:w-[500px] md:h-[300px] lg:w-[720px] lg:h-[420px]">
         <MapContainer center={position} zoom={13} style={{ height: "100%" }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <DraggableMarker position={position} markerRef={markerRef} />
         </MapContainer>
       </div>
-      <div className="absolute w-full flex items-center justify-center gap-6 z-20 bottom-7">
+      <div className="absolute w-full flex items-center justify-center gap-2 sm:gap-4 md:gap-6 z-20 bottom-7">
         <button
           onClick={closeModalHandler}
-          className="rounded-2xl text-white px-5 py-3 font-semibold bg-[#B4B4B4]"
+          className="rounded-2xl text-white px-5 py-3 text-xs sm:text-sm md:text-base font-semibold bg-[#B4B4B4]"
         >
           بستن
         </button>
         <DornicaButton
           clickHandler={onSubmitMarkerHadler}
-          buttonClass={"bg-[#EA8E38]"}
+          buttonClass={"bg-[#EA8E38] text-xs sm:text-sm md:text-base"}
         >
           ثبت موقعیت
         </DornicaButton>
