@@ -3,43 +3,35 @@ import { useState, useEffect } from "react";
 //component
 import DornicaInput from "../../../../../utils/input";
 import DornicaButton from "../../../../../utils/button";
-
+import DornicaDatePicker from "../../../../../utils/datePicker";
 //svg
 import { ReactComponent as UserSvg } from "./../../../../../../assets/svg/user.svg";
 import { ReactComponent as CardSvg } from "./../../../../../../assets/svg/card.svg";
 import { ReactComponent as CalenderSvg } from "./../../../../../../assets/svg/calender.svg";
 
-export default function SignupStage1({ onSetStageHandler }) {
+export default function SignupStage1({ parentData, onSetStageHandler }) {
+  //data
   const [dataSchema, setDataScheam] = useState({
     name: "",
     nationalCode: "",
     date: "",
   });
-
   const [error, setError] = useState({});
 
+  //set parentData if we have to dataSchema
   useEffect(() => {
-    /**
-     * * data is stored in sessionStorage and will added to dataSchema(state)
-     * * in component mount
-     */
-
-    //loop on sessionStorage to get saved data and show in component
-    Object.keys(sessionStorage).forEach(function (key) {
-      setDataScheam((prevState) => {
-        return {
-          ...prevState,
-          [key]: JSON.parse(sessionStorage.getItem(key)),
-        };
+    if (parentData.name && parentData.nationalCode && parentData.date) {
+      setDataScheam({
+        ...parentData,
       });
-    });
-  }, []);
+    }
+  }, [parentData]);
 
   const onSetDataScheamaHandler = (target, value) => {
     //check if input value is national code
     if (target === "nationalCode") {
+      //check input to be number
       if (!/^\d+$/.test(value) && value !== "") {
-        //check input to be number
         //it's not number return
         return;
       }
@@ -107,7 +99,7 @@ export default function SignupStage1({ onSetStageHandler }) {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-8 px-32 w-full mb-auto">
+      <div className="flex flex-col items-center justify-center gap-8  sm:px-20 md:px-32 w-full mb-auto">
         <DornicaInput
           error={error.name}
           target={"name"}
@@ -126,13 +118,12 @@ export default function SignupStage1({ onSetStageHandler }) {
           placeholder={"208-1235-456"}
           Icon={CardSvg}
         />
-        <DornicaInput
+        <DornicaDatePicker
           error={error.date}
           target={"date"}
-          value={dataSchema.date}
-          onChangeHandler={onSetDataScheamaHandler}
+          selectedDay={dataSchema.date}
+          selectDayHandler={onSetDataScheamaHandler}
           title={"تاریخ تولد"}
-          placeholder={"1370/06/31"}
           Icon={CalenderSvg}
         />
       </div>
