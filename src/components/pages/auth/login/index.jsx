@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginUser } from "../../../../service/auth";
 
 //component
-import DornicaInput from "./../../../utils/input";
+import DornicaInput, { DornicaPasswordInput } from "./../../../utils/input";
 import DornicaButton from "./../../../utils/button";
 
 //Pic
@@ -28,8 +28,18 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+  });
 
   const httpLoginUser = async () => {
+    //check if we have error
+    if (checkInput()) {
+      //there is error in inputs
+      return;
+    }
+
     try {
       const response = await LoginUser(navigation, { ...dataSchema });
 
@@ -50,10 +60,46 @@ export default function Login() {
     }));
   };
 
+  const checkInput = () => {
+    //clear error
+    setError({});
+
+    let errorFlag = false;
+
+    //check email
+    if (dataSchema.email.length === 0) {
+      errorFlag = true;
+
+      onSetErrorHandler("email", "مقدار ایمیل را باید وارد کنید");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataSchema.email)) {
+      errorFlag = true;
+
+      onSetErrorHandler("email", "ایمیل را به درستی وارد کنید");
+    }
+
+    //check password
+    if (dataSchema.password.length < 8) {
+      errorFlag = true;
+
+      onSetErrorHandler("password", "رمز عبور باید حداقل 8 رقمی باشد");
+    }
+
+    return errorFlag;
+  };
+
+  const onSetErrorHandler = (target, value) => {
+    setError((prevState) => ({
+      ...prevState,
+      [target]: value,
+    }));
+  };
+
   return (
     <div className="grid grid-cols-12 bg-white rounded-xl">
-      <div className="col-span-6 bg-[#388AEA] text-white rounded-r-xl py-11 flex flex-col items-center justify-center gap-y-5">
-        <p className="font-black text-4xl">صرافی ارز دیجیتال نیوکوین اسپیس</p>
+      <div className="col-span-6 hidden lg:flex flex-col items-center justify-center gap-y-5 bg-[#388AEA] text-white rounded-r-xl py-11 px-6">
+        <p className="font-black text-center text-4xl">
+          صرافی ارز دیجیتال نیوکوین اسپیس
+        </p>
         <p className="font-medium text-xl w-1/2 text-center">
           خرید و فروش امن بیت‌کوین و ارزهای دیجیتال به بزرگترین بازار ارز
           دیجیتال ایران بپیوندید
@@ -61,18 +107,21 @@ export default function Login() {
         <img src={Astronaut} alt="astronaut" />
       </div>
 
-      <div className="col-span-6 px-16 flex items-center justify-start flex-col">
+      <div className="col-span-12 lg:col-span-6 p-7 sm:p-10 flex items-center justify-between flex-col min-h-screen">
         <img src={Logo} alt="Logo" className="mb-7" />
-        <p className="font-black text-[40px] mb-2">ورود به داشبورد</p>
+        <p className="font-black text-3xl md:text-[40px] mb-2">
+          ورود به داشبورد
+        </p>
         <Link
           to="/auth?status=signup"
-          className="font-semibold text-[#388AEA] text-xl mb-10"
+          className="font-semibold text-[#388AEA] text-base md:text-xl mb-10"
         >
           هنوز ثبت نام نکرده‌اید؟
         </Link>
 
         <div className="flex flex-col items-center justify-center gap-10 w-full">
           <DornicaInput
+            error={error.email}
             target={"email"}
             value={dataSchema.email}
             onChangeHandler={onChangeDataSchemaHandler}
@@ -80,7 +129,9 @@ export default function Login() {
             title={"ایمیل"}
             placeholder={"example@mail.com"}
           />
-          <DornicaInput
+
+          <DornicaPasswordInput
+            error={error.password}
             target={"password"}
             value={dataSchema.password}
             onChangeHandler={onChangeDataSchemaHandler}
