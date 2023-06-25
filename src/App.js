@@ -1,15 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 //component
+import Root from "./pages/root";
 import Auth from "./pages/auth";
+import Dashboard from "./pages/dashboard";
 
 //layout
+import PanelLayout from "./components/common/panelLayout";
 import Layout from "./components/common/layout";
 
 //helper component
 import ErrorPage from "./pages/errorPage";
-import Dashboard from "./pages/dashboard";
-import PanelLayout from "./components/common/panelLayout";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/",
+        element: <Root />,
+      },
       {
         path: "/auth",
         element: <Auth />,
