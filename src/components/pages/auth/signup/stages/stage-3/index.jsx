@@ -105,16 +105,15 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
 
     try {
       //destructure data from dataSchema
-      const { name, email, phoneNumber } = dataSchema;
+      const { name, email, phoneNumber, password } = dataSchema;
 
       const response = await SignupUser(navigation, {
         name,
         email,
         //send phone number with slice zero from the first of number
         phone: phoneNumber.slice(1),
-        //there is no design for password set password static
-        password: "12345678",
-        passwordConfirmation: "12345678",
+        password: password,
+        passwordConfirmation: password,
       });
 
       //check response status

@@ -75,6 +75,7 @@ export function DornicaPasswordInput({
         </span>
         <Icon />
         <input
+          autoComplete="new-password"
           type={isShowPassword ? "text" : "password"}
           value={value}
           onChange={(e) => onChangeHandler(target, e.target.value)}

@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
 //component
-import DornicaInput from "../../../../../utils/input";
+import DornicaInput, { DornicaPasswordInput } from "../../../../../utils/input";
 import DornicaButton from "../../../../../utils/button";
 import DornicaDatePicker from "../../../../../utils/datePicker";
 //svg
 import { ReactComponent as UserSvg } from "./../../../../../../assets/svg/user.svg";
 import { ReactComponent as CardSvg } from "./../../../../../../assets/svg/card.svg";
 import { ReactComponent as CalenderSvg } from "./../../../../../../assets/svg/calender.svg";
+import { ReactComponent as LockSvg } from "./../../../../../../assets/svg/lock.svg";
 
 export default function SignupStage1({ parentData, onSetStageHandler }) {
   //data
@@ -15,11 +16,13 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
     name: "",
     nationalCode: "",
     date: "",
+    password: "",
   });
   const [error, setError] = useState({
     name: "",
     nationalCode: "",
     date: "",
+    password: "",
   });
 
   //set parentData if we have to dataSchema
@@ -67,10 +70,23 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
       errorFlag = true;
       onSetErrorHandler("nationalCode", "کد ملی را به درستی وارد کنید");
     }
+
     //check date
     if (dataSchema.date.length === 0) {
       errorFlag = true;
       onSetErrorHandler("date", "تاریخ تولد الزامی است");
+    }
+
+    //check date
+    if (dataSchema.password.length === 0) {
+      errorFlag = true;
+      onSetErrorHandler("password", "رمز عبور الزامی است");
+    } else if (dataSchema.password.length < 8) {
+      errorFlag = true;
+      onSetErrorHandler(
+        "password",
+        "مقدار رمز عبور باید بیشتر از 8 کارکتر باشد"
+      );
     }
 
     return errorFlag;
@@ -103,6 +119,7 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
           placeholder={"محمد حسین رحمتی"}
           Icon={UserSvg}
         />
+
         <DornicaInput
           error={error.nationalCode}
           target={"nationalCode"}
@@ -112,6 +129,7 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
           placeholder={"208-1235-456"}
           Icon={CardSvg}
         />
+
         <DornicaDatePicker
           error={error.date}
           target={"date"}
@@ -119,6 +137,16 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
           selectDayHandler={onSetDataScheamaHandler}
           title={"تاریخ تولد"}
           Icon={CalenderSvg}
+        />
+
+        <DornicaPasswordInput
+          error={error.password}
+          target={"password"}
+          value={dataSchema.password}
+          onChangeHandler={onSetDataScheamaHandler}
+          title={"رمز عبور"}
+          placeholder={"حداقل 8 کاراکتر"}
+          Icon={LockSvg}
         />
       </div>
       <div className="border-t pt-8 w-full">
