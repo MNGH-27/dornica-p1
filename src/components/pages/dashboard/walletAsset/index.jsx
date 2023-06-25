@@ -5,7 +5,7 @@ export default function WalletAsset() {
   return (
     <>
       <span className="font-semibold">دارایی‌های کیف پول</span>
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-2 h-full">
         <ul className="flex flex-col items-start justify-center gap-2">
           <li className="flex items-center justify-start gap-2">
             <i className="w-2 h-2 rounded-full bg-[#F7931A]" />
@@ -29,7 +29,11 @@ export default function WalletAsset() {
             </span>
           </li>
         </ul>
-        <img src={NBChartPIE} alt="chart" />
+        <img
+          src={NBChartPIE}
+          alt="chart"
+          className="w-[100px] md:w-fit xl:w-[100px] 2xl:w-fit"
+        />
       </div>
     </>
   );
