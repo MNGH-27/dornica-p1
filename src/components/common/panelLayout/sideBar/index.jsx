@@ -1,3 +1,9 @@
+//react cookies
+import { useCookies } from "react-cookie";
+
+//react router dom
+import { useNavigate } from "react-router-dom";
+
 //Svg
 import { ReactComponent as HomeSvg } from "./../../../../assets/svg/home3.svg";
 import { ReactComponent as ArrangeSvg } from "./../../../../assets/svg/arrangehorizontalsquare.svg";
@@ -9,6 +15,20 @@ import { ReactComponent as LogoutSvg } from "./../../../../assets/svg/logout.svg
 import Logo from "./../../../../assets/img/Logo.png";
 
 export default function SideBar() {
+  //navigation
+  const navigate = useNavigate();
+  //cookie
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
+  //logout user from panel
+  function logoutHandler() {
+    //remove token from cookie
+    removeCookie("token");
+
+    //navigate to authentication page
+    navigate("/auth?state=login");
+  }
+
   return (
     <>
       <div className="border-b pb-5 flex flex-col items-center justify-start w-full">
@@ -32,10 +52,13 @@ export default function SideBar() {
           <EmptyWalletSvg />
           <span className="font-semibold">کیف پول</span>
         </div>
-        <div className="flex items-center justify-start gap-5 w-full p-4 text-[#EA3838] rounded-2xl">
+        <button
+          onClick={logoutHandler}
+          className="flex items-center justify-start gap-5 w-full p-4 text-[#EA3838] rounded-2xl"
+        >
           <LogoutSvg />
           <span className="font-semibold">خروج</span>
-        </div>
+        </button>
       </div>
     </>
   );
