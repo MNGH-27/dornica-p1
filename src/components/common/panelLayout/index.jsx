@@ -46,6 +46,7 @@ export default function PanelLayout() {
           isShowSideBar ? "col-span-12 xl:col-span-9" : "col-span-12"
         } duration-200 w-full flex flex-col justify-start items-start gap-7`}
       >
+        {/* header of panel */}
         <div className="flex items-center justify-between w-full bg-white rounded-2xl p-5">
           <button onClick={onToggleSideBarStatusHandler}>
             <HamburgerSvg />
@@ -63,6 +64,8 @@ export default function PanelLayout() {
             />
           </div>
         </div>
+
+        {/* children  */}
         <Outlet />
       </div>
     </div>
