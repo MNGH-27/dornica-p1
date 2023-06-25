@@ -8,6 +8,8 @@ import Layout from "./components/common/layout";
 
 //helper component
 import ErrorPage from "./pages/errorPage";
+import Dashboard from "./pages/dashboard";
+import PanelLayout from "./components/common/panelLayout";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,11 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <Auth />,
+      },
+      {
+        path: "/dashboard",
+        element: <PanelLayout />,
+        children: [{ path: "/", element: <Dashboard /> }],
       },
     ],
   },
