@@ -23,23 +23,23 @@ export default function PanelLayout() {
   return (
     <div className="relative grid grid-cols-12 gap-5 w-full min-h-screen p-5">
       {/* side bar */}
-      <>
-        {isShowSideBar && (
+      {isShowSideBar && (
+        <>
           <div
             onClick={onToggleSideBarStatusHandler}
             className="absolute lg:hidden w-full h-full top-0 right-0 bg-black/50 z-10"
           ></div>
-        )}
-        <div
-          className={`${
-            isShowSideBar
-              ? "absolute z-20 lg:relative w-3/4 sm:w-1/2 lg:w-full col-span-3 px-7"
-              : " w-0"
-          } duration-200 overflow-hidden h-full bg-white lg:rounded-2xl flex flex-col items-center justify-start`}
-        >
-          <SideBar />
-        </div>
-      </>
+          <div
+            className={`${
+              isShowSideBar
+                ? "absolute z-20 lg:relative w-3/4 sm:w-1/2 lg:w-full col-span-3 px-7"
+                : " w-0"
+            } duration-200 overflow-hidden h-full bg-white lg:rounded-2xl flex flex-col items-center justify-start`}
+          >
+            <SideBar />
+          </div>
+        </>
+      )}
 
       <div
         className={`${

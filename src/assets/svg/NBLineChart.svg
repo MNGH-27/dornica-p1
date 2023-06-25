@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="69" viewBox="0 0 220 69" fill="none">
+<path opacity="0.51" fill-rule="evenodd" clip-rule="evenodd" d="M5 37C44 37 18.5 5 57.5 5C96.5 5 71 21 110 21C149 21 123.5 30.6 162.5 30.6C201.5 30.6 176 24.2 215 24.2V69H5V37Z" fill="url(#paint0_linear_22_68)"/>
+<path d="M5 37C44 37 18.5 5 57.5 5C96.5 5 71 21 110 21C149 21 123.5 30.6 162.5 30.6C201.5 30.6 176 24.2 215 24.2" stroke="#2AC479" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="5" cy="37" r="3.5" fill="white" stroke="#2AC479" stroke-width="2"/>
+<circle cx="57.5" cy="5" r="3.5" fill="white" stroke="#2AC479" stroke-width="2"/>
+<circle cx="110" cy="21" r="3.5" fill="white" stroke="#2AC479" stroke-width="2"/>
+<circle cx="162.5" cy="30.6" r="3.5" fill="white" stroke="#2AC479" stroke-width="2"/>
+<circle cx="215" cy="24.2" r="3.5" fill="white" stroke="#2AC479" stroke-width="2"/>
+<defs>
+<linearGradient id="paint0_linear_22_68" x1="110" y1="5" x2="110" y2="69" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2AC479"/>
+<stop offset="1" stop-color="#2AC479" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
