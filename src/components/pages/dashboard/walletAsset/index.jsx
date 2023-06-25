@@ -7,6 +7,7 @@ const options = {
     plotBorderWidth: null,
     plotShadow: false,
     type: "pie",
+    height: 200,
   },
   title: {
     text: "",
@@ -48,7 +49,7 @@ export default function WalletAsset() {
   return (
     <>
       <span className="font-semibold">دارایی‌های کیف پول</span>
-      <div className="flex flex-col overflow-hidden 2xl:flex-row items-center justify-between gap-2 h-full">
+      <div className="flex items-center justify-between gap-2 h-full">
         <ul className="flex flex-col items-start justify-center gap-2">
           <li className="flex items-center justify-start gap-2">
             <i className="w-2 h-2 rounded-full bg-[#F7931A]" />

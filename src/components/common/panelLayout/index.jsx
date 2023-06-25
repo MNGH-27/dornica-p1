@@ -27,14 +27,14 @@ export default function PanelLayout() {
         <>
           <div
             onClick={onToggleSideBarStatusHandler}
-            className="absolute lg:hidden w-full h-full top-0 right-0 bg-black/50 z-10"
+            className="absolute xl:hidden w-full h-full top-0 right-0 bg-black/50 z-10"
           ></div>
           <div
             className={`${
               isShowSideBar
-                ? "absolute z-20 lg:relative w-3/4 sm:w-1/2 lg:w-full col-span-3 px-7"
+                ? "absolute z-20 xl:relative w-3/4 sm:w-1/2 xl:w-full col-span-3 px-7"
                 : " w-0"
-            } duration-200 overflow-hidden h-full bg-white lg:rounded-2xl flex flex-col items-center justify-start`}
+            } duration-200 overflow-hidden h-full bg-white xl:rounded-2xl flex flex-col items-center justify-start`}
           >
             <SideBar />
           </div>
@@ -43,7 +43,7 @@ export default function PanelLayout() {
 
       <div
         className={`${
-          isShowSideBar ? "col-span-12 lg:col-span-9" : "col-span-12"
+          isShowSideBar ? "col-span-12 xl:col-span-9" : "col-span-12"
         } duration-200 w-full flex flex-col justify-start items-start gap-7`}
       >
         <div className="flex items-center justify-between w-full bg-white rounded-2xl p-5">

@@ -3,6 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 const options = {
   chart: {
     type: "column",
+    height: 200,
   },
   title: {
     text: "",

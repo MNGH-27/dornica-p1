@@ -17,11 +17,11 @@ function Dashboard() {
 
       <div className="grid grid-cols-12 w-full mt-5 gap-5">
         <div className="col-span-12 sm:col-span-6 md:col-span-8 grid grid-cols-12 gap-5">
-          <div className="col-span-12 xl:col-span-6 bg-white p-5 rounded-xl">
+          <div className="col-span-12 xl:col-span-6 bg-white p-5 rounded-xl max-h-[300px] overflow-hidden">
             <WalletAsset />
           </div>
 
-          <div className="col-span-12 xl:col-span-6 bg-white p-5 rounded-xl space-y-3">
+          <div className="col-span-12 xl:col-span-6 bg-white p-5 rounded-xl space-y-3 max-h-[300px] overflow-hidden">
             <TransactionValue />
           </div>
 
