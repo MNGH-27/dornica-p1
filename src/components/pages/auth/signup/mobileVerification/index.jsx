@@ -28,7 +28,7 @@ export default function MobileVerification({
     num4: "",
   });
 
-  //set phone number prevPhoneNumber in changeing
+  //set phone number prevPhoneNumber in changing
   useEffect(() => {
     setPhoneNumber(prevPhoneNumber);
   }, [prevPhoneNumber]);
@@ -36,7 +36,7 @@ export default function MobileVerification({
   const httpSendCodeHandler = async () => {
     //check phone number length
     if (!/^09\d{9}$/.test(phoneNumber)) {
-      //phone numner is not correct
+      //phone numner is not correct => return
       toast.error("شماره وارد شده باید صحیح باشد");
       return;
     }
@@ -46,7 +46,7 @@ export default function MobileVerification({
        * TODO: need api to send code
        */
 
-      //show code validation to user
+      //show code validation section to user
       setIsShowCodeValidationInput(true);
     } catch (error) {
       console.log("error in send code : ", error);
@@ -62,15 +62,19 @@ export default function MobileVerification({
       codeNum.num4.length === 0
     ) {
       //show error to user to enter vrify code
-      toast("باید کد ارسال شده به شماره همراه را وارد کند");
+      toast.error("باید کد ارسال شده به شماره همراه را وارد کند");
+
+      /**
+       * here we have to => return (to don't let request send)
+       */
     }
+
     try {
       /**
        * TODO: need api to send code
+       * ! after user enter verify code successfully we will send phone number to parent
        */
-      /**
-       * ! after user enter verify code successfully we will send phone numeber to parent
-       */
+
       //set phone number in parent dataSchema
       onSetPhoneNumber("phoneNumber", phoneNumber);
     } catch (error) {
@@ -115,8 +119,8 @@ export default function MobileVerification({
         </button>
       </div>
 
-      {/* code verification */}
       {
+        // code verification
         //check if we show smsCodeValidation
         isShowCodeValidationInput && (
           <div className="w-full">
@@ -136,6 +140,7 @@ export default function MobileVerification({
             <div className="flex flex-col items-center justify-center gap-5 my-5">
               <p className="font-semibold">کد تائید</p>
 
+              {/* sms code container */}
               <SmsCodeContainer
                 setCodeHandler={onSetCodeHandler}
                 codeNum={codeNum}

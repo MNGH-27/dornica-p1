@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+//react-toastify
+import { toast } from "react-toastify";
+
 //react router dom
 import { Link, useNavigate } from "react-router-dom";
 
@@ -20,9 +23,9 @@ import Logo from "./../../../../assets/img/Logo.png";
 //svg
 import { ReactComponent as MessageSvg } from "./../../../../assets/svg/message.svg";
 import { ReactComponent as LockSvg } from "./../../../../assets/svg/lock.svg";
-import { toast } from "react-toastify";
 
 export default function Login() {
+  //cookies
   const [cookies, setCookies] = useCookies(["token"]);
 
   //navigation
@@ -83,7 +86,9 @@ export default function Login() {
       errorFlag = true;
 
       onSetErrorHandler("email", "مقدار ایمیل را باید وارد کنید");
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataSchema.email)) {
+    }
+    //check email be in correct way
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataSchema.email)) {
       errorFlag = true;
 
       onSetErrorHandler("email", "ایمیل را به درستی وارد کنید");

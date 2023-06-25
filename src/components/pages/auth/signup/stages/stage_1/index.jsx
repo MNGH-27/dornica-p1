@@ -16,7 +16,11 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
     nationalCode: "",
     date: "",
   });
-  const [error, setError] = useState({});
+  const [error, setError] = useState({
+    name: "",
+    nationalCode: "",
+    date: "",
+  });
 
   //set parentData if we have to dataSchema
   useEffect(() => {
@@ -52,41 +56,31 @@ export default function SignupStage1({ parentData, onSetStageHandler }) {
     //check name
     if (dataSchema.name.length === 0) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        name: "نام الزامی است",
-      }));
+      onSetErrorHandler("name", "نام الزامی است");
     }
 
     //check national code
     if (dataSchema.nationalCode.length === 0) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        nationalCode: "کد ملی الزامی است",
-      }));
+      onSetErrorHandler("nationalCode", "کد ملی الزامی است");
     } else if (dataSchema.nationalCode.length !== 10) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        nationalCode: "کد ملی را به درستی وارد کنید",
-      }));
+      onSetErrorHandler("nationalCode", "کد ملی را به درستی وارد کنید");
     }
-
     //check date
     if (dataSchema.date.length === 0) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        date: "تاریخ تولد الزامی است",
-      }));
+      onSetErrorHandler("date", "تاریخ تولد الزامی است");
     }
 
     return errorFlag;
+  };
+
+  const onSetErrorHandler = (target, value) => {
+    setError((prevState) => ({
+      ...prevState,
+      [target]: value,
+    }));
   };
 
   const onGoNextStageHandler = () => {

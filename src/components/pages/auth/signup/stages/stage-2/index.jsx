@@ -36,7 +36,9 @@ export default function SignupStage2({ parentData, onSetStageHandler }) {
   };
 
   const onGoToNextStepHandler = () => {
+    //check if input be correct
     if (!checkInput()) {
+      //there is no error in inputs
       onSetStageHandler("next", dataSchema);
     }
   };
@@ -54,32 +56,27 @@ export default function SignupStage2({ parentData, onSetStageHandler }) {
     //check if we have phone number
     if (dataSchema.phoneNumber.length === 0) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        phoneNumber: "شماره تلفن خود را وارد کنید",
-      }));
+      setErrorHandler("phoneNumber", "شماره تلفن خود را وارد کنید");
     }
 
     if (dataSchema.email.length === 0) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        email: "وارد کردن ایمیل الزامی است",
-      }));
+      setErrorHandler("email", "وارد کردن ایمیل الزامی است");
     }
     //check format of email
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataSchema.email)) {
       errorFlag = true;
-
-      setError((prevState) => ({
-        ...prevState,
-        email: "فرمت ایمیل وارد شده صحیح نیست",
-      }));
+      setErrorHandler("email", "فرمت ایمیل وارد شده صحیح نیست");
     }
 
     return errorFlag;
+  };
+
+  const setErrorHandler = (target, value) => {
+    setError((prevState) => ({
+      ...prevState,
+      [target]: value,
+    }));
   };
 
   return (

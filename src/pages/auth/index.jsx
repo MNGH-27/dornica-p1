@@ -14,7 +14,7 @@ export default function Auth() {
     () => {
       const searchParamsValue = searchParams.get("status");
 
-      //check if we have searchParams
+      //check if we have status in searchParams
       if (searchParamsValue === undefined) {
         setSearchParams({
           status: "login",
@@ -25,6 +25,7 @@ export default function Auth() {
         searchParamsValue !== "login" ||
         searchParamsValue !== "signup"
       ) {
+        //status is not in correct way => set status to login
         setSearchParams({
           status: "login",
         });

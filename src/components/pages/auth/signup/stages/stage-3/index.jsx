@@ -46,7 +46,9 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
     lat: "",
     lng: "",
   });
+
   const [filtredCity, setFiltredCity] = useState([]);
+
   const [isShowLocationModal, setIsShowLocationModal] = useState(false);
 
   //set parentData if we have to dataSchema
@@ -67,7 +69,7 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
         city: {},
       }));
 
-      //filter city of selected city
+      //filter city of selected state
       setFiltredCity([
         ...staticCity.filter((singleCity) => singleCity.stateId === value.id),
       ]);
@@ -97,12 +99,15 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
     }
 
     try {
+      //destructure data from dataSchema
       const { name, email, phoneNumber } = dataSchema;
+
       const response = await SignupUser(navigation, {
         name,
         email,
         //send phone number with slice zero from the first of number
         phone: phoneNumber.slice(1),
+        //there is no design for password set password static
         password: "12345678",
         passwordConfirmation: "12345678",
       });
@@ -132,31 +137,26 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
 
     if (!dataSchema.city.title) {
       errorFlag = true;
-
       onSetErrorHandler("city", "باید یک شهر را انتخاب کنید");
     }
 
     if (!dataSchema.state.title) {
       errorFlag = true;
-
       onSetErrorHandler("state", "باید یک استان را انتخاب کنید");
     }
 
     if (dataSchema.address.length === 0) {
       errorFlag = true;
-
       onSetErrorHandler("address", "باید آدرس را وارد کنید");
     }
 
     if (dataSchema.lat === "") {
       errorFlag = true;
-
       onSetErrorHandler("lat", "طول جغرافیایی را وارد کنید");
     }
 
     if (dataSchema.lng === "") {
       errorFlag = true;
-
       onSetErrorHandler("lng", "عرض جغرافیایی را وارد کنید");
     }
 
@@ -253,13 +253,16 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
         </DornicaButton>
       </div>
 
-      {isShowLocationModal && (
-        <LocationModal
-          defaultLocation={{ lat: dataSchema.lat, lng: dataSchema.lng }}
-          onSendLocationHandler={onSendLocationHandler}
-          closeModalHandler={() => setIsShowLocationModal(false)}
-        />
-      )}
+      {
+        //modal for select location
+        isShowLocationModal && (
+          <LocationModal
+            defaultLocation={{ lat: dataSchema.lat, lng: dataSchema.lng }}
+            onSendLocationHandler={onSendLocationHandler}
+            closeModalHandler={() => setIsShowLocationModal(false)}
+          />
+        )
+      }
     </>
   );
 }
