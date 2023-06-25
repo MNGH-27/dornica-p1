@@ -25,3 +25,7 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.custome-opacity-gredient {
+  background: linear-gradient(to top, #ffffff 0%, #ffffff00 100%);
+}

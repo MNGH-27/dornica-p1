@@ -2,7 +2,7 @@
 import BitCoinLogo from "./../../../../../assets/img/Bitcoinlogo.png";
 
 //svg
-import { ReactComponent as NbChartSvg } from "./../../../../../assets/svg/NBLineChart.svg";
+import { ReactComponent as NbChartSvg } from "./../../../../../assets/svg/chart/NBLineChart.svg";
 
 export default function SingleCoin() {
   return (
