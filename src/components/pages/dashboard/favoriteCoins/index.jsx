@@ -54,14 +54,10 @@ export default function FavoriteCoin() {
       </div>
       <div>
         {isLoading
-          ? //fetching coins from api => show loading component
-            Array(10)
-              .fill("")
-              .map((singleLoadingItem) => (
-                <LoadingFavotieCoin key={singleLoadingItem} />
-              ))
-          : //show single coin after data fetched successfully
-            coins.map((singleCoin, index) => (
+          ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((singleLoadingItem) => (
+              <LoadingFavotieCoin key={singleLoadingItem} />
+            ))
+          : coins.map((singleCoin, index) => (
               <SingleFavoriteCoin singleCoin={singleCoin} key={index} />
             ))}
       </div>
