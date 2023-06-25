@@ -1,6 +1,3 @@
-//pic
-import BitCoinLogo from "./../../../../../assets/img/Bitcoinlogo.png";
-
 export default function SingleFavoriteCoin({ singleCoin }) {
   return (
     <div className="flex items-center justify-between gap-2 border-b py-3">

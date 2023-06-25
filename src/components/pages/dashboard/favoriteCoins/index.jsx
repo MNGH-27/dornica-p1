@@ -10,9 +10,11 @@ import { toast } from "react-toastify";
 import SingleFavoriteCoin from "./singleFavoriteCoin";
 
 export default function FavoriteCoin() {
+  //state
   const [isLoading, setIsLoading] = useState(true);
   const [coins, setCoins] = useState([]);
 
+  //fetch data in initail component
   useEffect(() => {
     httpGetCoinsList();
   }, []);
@@ -31,7 +33,6 @@ export default function FavoriteCoin() {
       }
     } catch (error) {
       console.log("error in get trend coin => ", error);
-      setIsLoading(true);
     }
     setIsLoading(false);
   };
@@ -53,10 +54,14 @@ export default function FavoriteCoin() {
       </div>
       <div>
         {isLoading
-          ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((singleLoadingItem) => (
-              <LoadingFavotieCoin key={singleLoadingItem} />
-            ))
-          : coins.map((singleCoin, index) => (
+          ? //fetching coins from api => show loading component
+            Array(10)
+              .fill("")
+              .map((singleLoadingItem) => (
+                <LoadingFavotieCoin key={singleLoadingItem} />
+              ))
+          : //show single coin after data fetched successfully
+            coins.map((singleCoin, index) => (
               <SingleFavoriteCoin singleCoin={singleCoin} key={index} />
             ))}
       </div>

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
+//highcharts
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 export default function SingleCoin({ coinItem }) {
+  //state => chartOptions in state
   const [chart, setChart] = useState({
     chart: {
       type: "area",
@@ -77,15 +79,15 @@ export default function SingleCoin({ coinItem }) {
       +coinItem.price_change_percentage_14d_in_currency.toFixed(2),
     ];
 
-    //create template object to change data
+    //create temp object to change data
     const tempObj = chart;
 
     //change name of chart to current chart
     chart.series.name = coinItem.name;
-    //add data to chart
+    //add data to temp chart
     chart.series.data = chartArray;
 
-    //add data to state
+    //add temp chart to state
     setChart({ ...tempObj });
   }, []);
 

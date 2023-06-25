@@ -19,9 +19,11 @@ import "swiper/css/navigation";
 import { ReactComponent as ArrowLeftSvg } from "./../../../../assets/svg/arrowSquerLeft.svg";
 
 export default function CoinsSlider() {
+  //state
   const [isLoading, setIsLoading] = useState(true);
   const [coins, setCoins] = useState([]);
 
+  //get coin list in intial component
   useEffect(() => {
     httpGetCoinsList();
   }, []);
@@ -40,7 +42,6 @@ export default function CoinsSlider() {
       }
     } catch (error) {
       console.log("error in get trend coin => ", error);
-      setIsLoading(true);
     }
     setIsLoading(false);
   };
@@ -73,17 +74,22 @@ export default function CoinsSlider() {
         }}
         allowTouchMove
       >
-        {isLoading
-          ? [1, 2, 3, 4, 5].map((signleCoin, index) => (
-              <SwiperSlide key={index}>
-                <LoadingSlider />
-              </SwiperSlide>
-            ))
-          : coins.map((signleCoin, index) => (
-              <SwiperSlide key={index}>
-                <SingleCoin coinItem={signleCoin} />
-              </SwiperSlide>
-            ))}
+        {
+          //check if loading
+          isLoading
+            ? //loading component in fetchin coin
+              [1, 2, 3, 4, 5].map((signleCoin, index) => (
+                <SwiperSlide key={index}>
+                  <LoadingSlider />
+                </SwiperSlide>
+              ))
+            : //showing component after coin fetched
+              coins.map((signleCoin, index) => (
+                <SwiperSlide key={index}>
+                  <SingleCoin coinItem={signleCoin} />
+                </SwiperSlide>
+              ))
+        }
       </Swiper>
 
       <button className="coin-swiper-prev-btn mx-1 sm:mx-2">

@@ -10,8 +10,10 @@ export default function WithUser(WrappedComponent) {
   return function WithUserLogin(props) {
     //navigation
     const navigate = useNavigate();
+
     //cookies
     const [cookies, setCookies, removeCookies] = useCookies(["token"]);
+
     //state
     const [isLoading, setIsLoading] = useState(false);
 
@@ -27,8 +29,7 @@ export default function WithUser(WrappedComponent) {
     }, []);
 
     async function httpGetSingleUser() {
-      //   setIsLoading(true);
-
+      //setIsLoading(true);
       try {
         // const response = await GetSingleUser
         /**
@@ -39,8 +40,7 @@ export default function WithUser(WrappedComponent) {
       } catch (error) {
         console.log("error in get single user : ", error);
       }
-
-      //   setIsLoading(false);
+      //setIsLoading(false);
     }
 
     return isLoading ? (

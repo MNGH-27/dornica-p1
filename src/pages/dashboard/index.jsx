@@ -4,11 +4,9 @@ import WalletAsset from "../../components/pages/dashboard/walletAsset";
 import FavoriteCoin from "../../components/pages/dashboard/favoriteCoins";
 import TransactionValue from "../../components/pages/dashboard/transactionValue";
 import TradingView from "../../components/pages/dashboard/tradingView";
+
 //HOC
 import WithUser from "../../components/HOC/withUser";
-
-//pic
-import ChartPic from "./../../assets/img/chart/chartPic.png";
 
 function Dashboard() {
   return (
@@ -37,4 +35,5 @@ function Dashboard() {
   );
 }
 
+//return Dashboard to have user with it
 export default WithUser(Dashboard);

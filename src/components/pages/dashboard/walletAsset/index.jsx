@@ -7,7 +7,21 @@ const options = {
     plotBorderWidth: null,
     plotShadow: false,
     type: "pie",
-    height: 200,
+    height: "200",
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              enabled: false,
+            },
+          },
+        },
+      ],
+    },
   },
   title: {
     text: "",

@@ -1,5 +1,7 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
+//option of HighChart of TransactionValue
 const options = {
   chart: {
     type: "column",
@@ -9,7 +11,10 @@ const options = {
     text: "",
   },
   xAxis: {
-    categories: ["", "", "", "", "", "", "", "", "", "", "", ""],
+    visible: false, // hide the x-axis
+    labels: {
+      enabled: false, // disable the x-axis labels
+    },
   },
   yAxis: {
     title: {
@@ -17,6 +22,8 @@ const options = {
     },
     min: 0,
     max: 100,
+    tickAmount: 5, // this is the key line to increase the number of zeros
+    gridLineDashStyle: "dash", // this is the key line to make the zero axis dashed
   },
   series: [
     {
@@ -31,6 +38,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 88,
@@ -40,6 +50,9 @@ const options = {
               [0, "#388AEA"],
               [1, "#388AEA00"],
             ],
+          },
+          dataLabels: {
+            enabled: true,
           },
         },
         {
@@ -51,6 +64,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 44,
@@ -60,6 +76,9 @@ const options = {
               [0, "#388AEA"],
               [1, "#388AEA00"],
             ],
+          },
+          dataLabels: {
+            enabled: true,
           },
         },
         {
@@ -71,6 +90,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 61,
@@ -80,6 +102,9 @@ const options = {
               [0, "#388AEA"],
               [1, "#388AEA00"],
             ],
+          },
+          dataLabels: {
+            enabled: true,
           },
         },
         {
@@ -91,6 +116,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 79,
@@ -100,6 +128,9 @@ const options = {
               [0, "#388AEA"],
               [1, "#388AEA00"],
             ],
+          },
+          dataLabels: {
+            enabled: true,
           },
         },
         {
@@ -111,6 +142,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 54,
@@ -120,6 +154,9 @@ const options = {
               [0, "#388AEA"],
               [1, "#388AEA00"],
             ],
+          },
+          dataLabels: {
+            enabled: true,
           },
         },
         {
@@ -131,6 +168,9 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
         {
           y: 97,
@@ -141,11 +181,15 @@ const options = {
               [1, "#388AEA00"],
             ],
           },
+          dataLabels: {
+            enabled: true,
+          },
         },
       ],
     },
   ],
 };
+
 export default function TransactionValue() {
   return (
     <>
