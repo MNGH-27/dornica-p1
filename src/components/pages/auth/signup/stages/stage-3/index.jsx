@@ -19,8 +19,9 @@ import LocationModal from "../../locationModal";
 //static data
 import { staticCity } from "../../../../../../data/city";
 import { staticState } from "../../../../../../data/state";
+import { toast } from "react-toastify";
 
-export default function SignupStage3({ onSetStageHandler }) {
+export default function SignupStage3({ parentData, onSetStageHandler }) {
   //navigation
   const navigation = useNavigate();
 
@@ -42,22 +43,14 @@ export default function SignupStage3({ onSetStageHandler }) {
   const [filtredCity, setFiltredCity] = useState([]);
   const [isShowLocationModal, setIsShowLocationModal] = useState(false);
 
+  //set parentData if we have to dataSchema
   useEffect(() => {
-    /**
-     * * data is stored in sessionStorage and will added to dataSchema(state)
-     * * in component mount
-     */
-
-    //loop on sessionStorage to get saved data and show in component
-    Object.keys(sessionStorage).forEach(function (key) {
-      setDataSchema((prevState) => {
-        return {
-          ...prevState,
-          [key]: JSON.parse(sessionStorage.getItem(key)),
-        };
-      });
-    });
-  }, []);
+    //set other stages states to this dataSchema
+    setDataSchema((prevState) => ({
+      ...prevState,
+      ...parentData,
+    }));
+  }, [parentData]);
 
   const onSetDataSchemaHandler = (target, value) => {
     //check if we are changing state
@@ -80,7 +73,9 @@ export default function SignupStage3({ onSetStageHandler }) {
     }));
   };
 
+  //get loocation from map
   const onSendLocationHandler = (markerLocation) => {
+    //set data from marker in LocationModal
     setDataSchema((prevState) => ({
       ...prevState,
       lat: markerLocation.lat,
@@ -100,11 +95,20 @@ export default function SignupStage3({ onSetStageHandler }) {
       const response = await SignupUser(navigation, {
         name,
         email,
-        phone: phoneNumber,
+        //send phone number with slice zero from the first of number
+        phone: phoneNumber.slice(1),
         password: "12345678",
         passwordConfirmation: "12345678",
       });
-      console.log("response :  ", response);
+
+      //check response status
+      if (response.status === 200) {
+        toast.success("حساب جدید با موفقیت ایجاد شد");
+        navigation("/dashboard");
+      } else {
+        //show error in toast
+        toast.error(response.data.message);
+      }
     } catch (error) {
       console.log("error in signup => ", error);
     }

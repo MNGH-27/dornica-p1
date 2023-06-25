@@ -22,7 +22,7 @@ export default function Signup() {
       setSignupStage(signupStage - 1);
     } else {
       //set data to dataSchema
-      setDataSchema({ ...dataSchema });
+      setDataSchema((prevState) => ({ ...prevState, ...dataSchema }));
       //go to next step
       setSignupStage(signupStage + 1);
     }
@@ -52,7 +52,10 @@ export default function Signup() {
               onSetStageHandler={onSetStageHandler}
             />
           ) : (
-            <SignupStage3 onSetStageHandler={onSetStageHandler} />
+            <SignupStage3
+              parentData={dataSchema}
+              onSetStageHandler={onSetStageHandler}
+            />
           )
         }
       </StageWrapper>

@@ -7,7 +7,6 @@ import { ReactComponent as MessageSvg } from "./../../../../../../assets/svg/mes
 import DornicaInput from "../../../../../utils/input";
 import DornicaButton from "../../../../../utils/button";
 import MobileVerification from "../../mobileVerification";
-import { toast } from "react-toastify";
 
 export default function SignupStage2({ parentData, onSetStageHandler }) {
   const [dataSchema, setDataScheam] = useState({
@@ -70,11 +69,18 @@ export default function SignupStage2({ parentData, onSetStageHandler }) {
         email: "وارد کردن ایمیل الزامی است",
       }));
     }
+    //check format of email
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dataSchema.email)) {
+      errorFlag = true;
+
+      setError((prevState) => ({
+        ...prevState,
+        email: "فرمت ایمیل وارد شده صحیح نیست",
+      }));
+    }
 
     return errorFlag;
   };
-
-  console.log("error :", error);
 
   return (
     <>

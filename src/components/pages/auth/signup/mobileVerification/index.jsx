@@ -35,7 +35,7 @@ export default function MobileVerification({
 
   const httpSendCodeHandler = async () => {
     //check phone number length
-    if (phoneNumber.length !== 11) {
+    if (!/^09\d{9}$/.test(phoneNumber)) {
       //phone numner is not correct
       toast.error("شماره وارد شده باید صحیح باشد");
       return;
