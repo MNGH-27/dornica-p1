@@ -10,6 +10,9 @@ import { ReactComponent as MapSvg } from "./../../../../../../assets/svg/map.svg
 //service
 import { SignupUser } from "../../../../../../service/auth";
 
+//cookies
+import { useCookies } from "react-cookie";
+
 //component
 import DornicaDropBox from "../../../../../utils/dropBox";
 import DornicaButton from "../../../../../utils/button";
@@ -22,6 +25,9 @@ import { staticState } from "../../../../../../data/state";
 import { toast } from "react-toastify";
 
 export default function SignupStage3({ parentData, onSetStageHandler }) {
+  //cookies
+  const [cookies, setCookies] = useCookies(["token"]);
+
   //navigation
   const navigation = useNavigate();
 
@@ -103,7 +109,11 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
 
       //check response status
       if (response.status === 200) {
+        //user rregister successfully
         toast.success("حساب جدید با موفقیت ایجاد شد");
+        //set cookie
+        setCookies("token", response.data.token, { path: "/" });
+        //navigate to dashboard
         navigation("/dashboard");
       } else {
         //show error in toast

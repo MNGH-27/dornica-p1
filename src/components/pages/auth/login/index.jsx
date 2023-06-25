@@ -10,6 +10,9 @@ import { LoginUser } from "../../../../service/auth";
 import DornicaInput, { DornicaPasswordInput } from "./../../../utils/input";
 import DornicaButton from "./../../../utils/button";
 
+//cookies
+import { useCookies } from "react-cookie";
+
 //Pic
 import Astronaut from "./../../../../assets/img/Astronaut.png";
 import Logo from "./../../../../assets/img/Logo.png";
@@ -20,6 +23,8 @@ import { ReactComponent as LockSvg } from "./../../../../assets/svg/lock.svg";
 import { toast } from "react-toastify";
 
 export default function Login() {
+  const [cookies, setCookies] = useCookies(["token"]);
+
   //navigation
   const navigation = useNavigate();
 
@@ -43,7 +48,14 @@ export default function Login() {
     try {
       const response = await LoginUser(navigation, { ...dataSchema });
 
+      //check response status
       if (response.status === 200) {
+        //login successfully
+        toast.success("با موفقیت وارد شدید");
+        //add cookies
+        setCookies("token", response.data.token, { path: "/" });
+        //navigate to dashboard
+        navigation("/dashboard");
       } else {
         //there is error => show error
         toast.error(response.data.message);
