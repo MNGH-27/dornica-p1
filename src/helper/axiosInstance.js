@@ -1,7 +1,9 @@
 import axios from "axios";
 
+//there is no need for baseURL and useCredential in this project
+//axiosInstance is useFul in useFetch()(custome hook)
 const axiosInstance = axios.create({
-  //   baseURL: "http://localhost:5000/v1/",
+  //   baseURL: "",
   //   withCredentials: true,
 });
 

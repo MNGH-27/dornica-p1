@@ -120,7 +120,7 @@ export default function Login() {
 
   return (
     <div className="grid grid-cols-12 bg-white rounded-xl">
-      <div className="col-span-6 hidden lg:flex flex-col items-center justify-center gap-y-5 bg-[#388AEA] text-white rounded-r-xl py-11 px-6">
+      <div className="col-span-12 lg:col-span-6 flex flex-col items-center justify-center gap-y-5 bg-[#388AEA] text-white rounded-t-xl lg:rounded-tl-none lg:rounded-r-xl py-5 sm:py-11 px-3 sm:px-6">
         <p className="font-black text-center text-4xl">
           صرافی ارز دیجیتال نیوکوین اسپیس
         </p>
@@ -128,7 +128,11 @@ export default function Login() {
           خرید و فروش امن بیت‌کوین و ارزهای دیجیتال به بزرگترین بازار ارز
           دیجیتال ایران بپیوندید
         </p>
-        <img src={Astronaut} alt="astronaut" />
+        <img
+          className="w-1/2 max-w-[120px] lg:max-w-fit"
+          src={Astronaut}
+          alt="astronaut"
+        />
       </div>
 
       <div className="col-span-12 lg:col-span-6 p-7 sm:p-10 flex items-center justify-between flex-col min-h-screen">
