@@ -51,6 +51,8 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
 
   const [isShowLocationModal, setIsShowLocationModal] = useState(false);
 
+  const [isLoadingSignup, setIsLoadingSignup] = useState(false);
+
   //set parentData if we have to dataSchema
   useEffect(() => {
     //set other stages states to this dataSchema
@@ -98,6 +100,9 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
       return;
     }
 
+    //start loading
+    setIsLoadingSignup(true);
+
     try {
       //destructure data from dataSchema
       const { name, email, phoneNumber } = dataSchema;
@@ -127,6 +132,9 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
     } catch (error) {
       console.log("error in signup => ", error);
     }
+
+    //stoploading
+    setIsLoadingSignup(false);
   };
 
   const checkInput = () => {
@@ -246,8 +254,10 @@ export default function SignupStage3({ parentData, onSetStageHandler }) {
           مرحله قبل
         </button>
         <DornicaButton
+          isLoading={isLoadingSignup}
+          bgColor={"#388AEA"}
+          textColor={"#fff"}
           clickHandler={httpSignupHandler}
-          buttonClass={"bg-[#388AEA]"}
         >
           ثبت نام
         </DornicaButton>

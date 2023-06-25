@@ -40,6 +40,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [isLoadingLogginData, setIsLoadingLogginData] = useState(false);
 
   const httpLoginUser = async () => {
     //check if we have error
@@ -47,6 +48,9 @@ export default function Login() {
       //there is error in inputs
       return;
     }
+
+    //start loading
+    setIsLoadingLogginData(true);
 
     try {
       const response = await LoginUser(navigation, { ...dataSchema });
@@ -66,6 +70,9 @@ export default function Login() {
     } catch (error) {
       console.log("error in login user => ", error);
     }
+
+    //stop loading
+    setIsLoadingLogginData(false);
   };
 
   const onChangeDataSchemaHandler = (target, value) => {
@@ -157,8 +164,10 @@ export default function Login() {
             placeholder={"حداقل 8 کاراکتر"}
           />
           <DornicaButton
+            isLoading={isLoadingLogginData}
+            bgColor={"#388AEA"}
+            textColor={"#FFF"}
             clickHandler={httpLoginUser}
-            buttonClass={"bg-[#388AEA]"}
           >
             ورود به حساب
           </DornicaButton>

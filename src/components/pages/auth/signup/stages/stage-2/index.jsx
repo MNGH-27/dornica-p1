@@ -107,8 +107,9 @@ export default function SignupStage2({ parentData, onSetStageHandler }) {
           مرحله قبل
         </button>
         <DornicaButton
+          bgColor={"#388AEA"}
+          textColor={"#fff"}
           clickHandler={onGoToNextStepHandler}
-          buttonClass={"bg-[#388AEA]"}
         >
           مرحله بعد
         </DornicaButton>

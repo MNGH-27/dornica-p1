@@ -55,8 +55,10 @@ export default function LocationModal({
           بستن
         </button>
         <DornicaButton
+          btnClass={"text-xs sm:text-sm md:text-base"}
+          bgColor={"#EA8E38"}
+          textColor={"#fff"}
           clickHandler={onSubmitMarkerHadler}
-          buttonClass={"bg-[#EA8E38] text-xs sm:text-sm md:text-base"}
         >
           ثبت موقعیت
         </DornicaButton>
