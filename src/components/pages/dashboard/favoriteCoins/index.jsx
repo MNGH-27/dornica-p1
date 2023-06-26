@@ -27,6 +27,11 @@ export default function FavoriteCoin() {
       if (response.status === 200) {
         //get coins successfully => add to coins state
         setCoins([...response.data]);
+        //set data in localStorage
+        response.data.forEach((singleCoin) => {
+          //save each coin as its name and stringify
+          localStorage.setItem(singleCoin.name, JSON.stringify(singleCoin));
+        });
       } else {
         //fail in fetch coins => show error
         toast.error("دریافت بیتکوین با مشکل مواجه شد");
